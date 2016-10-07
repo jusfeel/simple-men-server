@@ -4,41 +4,42 @@
   var express = require('express');
   var router = express.Router();
   var mongojs = require('mongojs');
-  var db = mongojs('meanTodo', ['todos']);
+	var collName = 'todos';
+  var db = mongojs('meanTodo', [collName]);
  
   /* GET home page. */
   router.get('/', function(req, res) {
     res.render('index');
   });
  
-  router.get('/api/todos', function(req, res) {
-    db.todos.find(function(err, data) {
+  router.get('/api/' + collName, function(req, res) {
+    db[collName].find(function(err, data) {
       res.json(data);
     });
   });
  
-  router.post('/api/todos', function(req, res) {
-    db.todos.insert(req.body, function(err, data) {
+  router.post('/api/' + collName, function(req, res) {
+    db[collName].insert(req.body, function(err, data) {
       res.json(data);
     });
  
   });
  
-  router.put('/api/todos', function(req, res) {
+  router.put('/api/' + collName, function(req, res) {
 		var _id = req.body._id;
-    var todo = req.body; 
-		delete todo._id;
+    var _obj = req.body; 
+		delete _obj._id;
 
-    db.todos.update({
+    db[collName].update({
       _id: mongojs.ObjectId(_id)
-    }, todo, {}, function(err, data) {
+    }, _obj, {}, function(err, data) {
       res.json(data);
     });
  
   });
  
   router.delete('/api/todos/:_id', function(req, res) {
-    db.todos.remove({
+    db[collName].remove({
       _id: mongojs.ObjectId(req.params._id)
     }, '', function(err, data) {
       res.json(data);
