@@ -1,0 +1,17 @@
+#create a folder and enter it
+npm init
+# use app.js as start script
+npm i --save express morgan body-parser cookie-parser debug ejs
+mkdir server client
+vim server/app.js
+mkdir server/routes server/views
+npm i --save mongojs
+vim server/routers/index.js
+# change DB name and collection name in index.js
+node app.js
+# start server under server/
+
+
+npm i --save-dev gulp gulp-nodemon gulp-watch jshint gulp-jshint gulp-livereload
+vim gulpfile.js
+gulp
