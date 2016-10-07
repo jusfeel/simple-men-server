@@ -1,3 +1,7 @@
+Instructed by http://thejackalofjavascript.com/mean-stack-hands-on-tutorial/
+
+MongoDB name is meanTodo, collection name is todos
+
 #create a folder and enter it
 npm init
 # use app.js as start script
